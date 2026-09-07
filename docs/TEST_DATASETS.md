@@ -49,6 +49,12 @@ Android does not have a direct equivalent to an iOS sysdiagnose archive. The clo
 
 The APK portion of malware datasets is hazardous. Prefer their captured logs or feature exports when possible. If APK analysis is necessary, keep it in a disposable, isolated lab with no personal accounts, secrets, or network access to production systems; do not install samples on a personal phone or ordinary emulator.
 
+## Training and methodology resources
+
+[SocialTIC Forensics](https://forensics.socialtic.org/) is a documentation resource for consensual digital forensics in support of civil society and human rights. It includes informed-consent guidance, forensic-lab risk considerations, Android bug-report and AndroidQF acquisition tutorials, and reference dictionaries for AndroidQF and MVT outputs. The site offers Spanish, English, and Portuguese navigation. Reviewed 2026-09-07.
+
+Use it to inform collection guidance, artifact interpretation, and realistic synthetic test scenarios. It is a methodology reference, not a confirmed-compromise dataset or a Local Verify integration. Its acquisition tutorials do not override this repository's [evidence-handling policy](../AGENTS.md): actual phone evidence stays on the phone during debugging unless an exception is explicitly authorized.
+
 ## Suggested test matrix
 
 Maintain an expected-results manifest and cover the following independently:
