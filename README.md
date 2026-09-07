@@ -49,6 +49,7 @@ Execution: 🟢 On phone · 🟡 Separate computer or phone workflow unverified 
 
 | Tool | Platform | Focus | Evidence / execution | Licence |
 | --- | --- | --- | --- | --- |
+| **Local Verify — 🔴 Experimental** | iOS, Android | Limited STIX matching; coverage unvalidated in real-world compromise cases | 🟢 Diagnostics; offline on phone| 🟢 [AGPL-3.0+](LICENSE) |
 | [IsMyPhonePwned](https://ismyphonepwned.com/) — Beta | iOS, Android | Diagnostic parsing and detection rules | 🟡 Sysdiagnose/bugreport; browser-local; phone/offline unverified | 🟢 [Apache-2.0 parsers](https://github.com/IsMyPhonePwned/sysdiagnose-extractor-library) / 🟡 [Web licence unverified](https://github.com/IsMyPhonePwned/ismyphonepwned.github.io) |
 | [Hypatia (maintained fork)](https://github.com/MaintainTeam/Hypatia) | Android | Malware file/app signatures; no diagnostic-log analysis | 🟢 On-phone scan; offline after signature download | 🟢 [Free/open source](https://github.com/MaintainTeam/Hypatia/blob/stable/LICENSE) |
 | [Panda Sysdiagnose](https://apps.apple.com/fi/app/sysdiagnose/id6795409832) | iOS | Device health; no documented spyware checks | 🟢 Sysdiagnose; on-device parsing/storage claimed | 🟡 No free-software licence found; free download |
@@ -62,7 +63,6 @@ Execution: 🟢 On phone · 🟡 Separate computer or phone workflow unverified 
 | [Triangle Check](https://github.com/KasperskyLab/triangle_check) | iOS | Operation Triangulation traces | 🟡 iTunes backups; desktop CLI| 🟢 [MIT](https://github.com/KasperskyLab/triangle_check/blob/main/License.txt) |
 | [SCNR](https://github.com/shindan-io/scnr) | Format-based | Structured-file parsing, not detection | 🟡 Plists, SQLite, archives; local Rust tools| 🟢 [Apache-2.0](https://github.com/shindan-io/scnr/blob/main/LICENSE) |
 | [BugBay](https://github.com/hidden-investigations/bugbay) | Web apps | Vulnerable training labs; no mobile forensics | 🟡 Linux/Docker; downloads and optional LAN exposure| 🟢 [Apache-2.0](https://github.com/hidden-investigations/bugbay/blob/main/LICENSE) |
-| **Local Verify — 🔴 Experimental** | iOS, Android | Limited STIX matching; coverage unvalidated in real-world compromise cases | 🟢 Diagnostics; offline on phone| 🟢 [AGPL-3.0+](LICENSE) |
 | [iMazing Analyzer](https://imazing.com/spyware-analyzer) | iOS | Guided spyware checks; free feature | 🟡 Backups; Mac/Windows; network features| 🔴 [App](https://imazing.com/uploads/iMazing-EULA.pdf) + 🟡 [MVT analyzer](https://github.com/DigiDNA/iMazing-Malware-Analyzer) |
 | [iVerify Enterprise](https://welcome.iverify.io/hubfs/iVerify-Mobile-Threat-Detection-Scanning-Capabilities-for-Enterprise.pdf) | iOS, Android | Commercial scans and monitoring | 🔴 Diagnostics shared with service; telemetry varies| 🔴 Proprietary |
 
@@ -73,6 +73,8 @@ Closest workflow match: IsMyPhonePwned imports both diagnostic formats and appli
 MVT's consent restriction makes it source-available rather than open source under the [Open Source Definition](https://opensource.org/osd). App code, dependencies and indicator datasets have separate terms; free of charge does not mean open source.
 
 ### Local Verify tradeoffs
+
+See [why Local Verify does not embed MVT](docs/WHY-NOT-MVT.md) for the workflow, integration and licensing rationale, and the resulting coverage tradeoff.
 
 🟢 Strength · 🟡 Gap · 🔴 Experimental / unvalidated · 🔵 Tradeoff.
 
