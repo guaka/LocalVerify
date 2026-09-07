@@ -74,6 +74,8 @@ MVT's consent restriction makes it source-available rather than open source unde
 
 ### LocalVerify tradeoffs
 
+See the [feature roadmap](docs/FEATURE-ROADMAP.md) for iOS/Android implementation status, free-software references, and the proposed iOS-first expansion.
+
 See [why LocalVerify does not embed MVT](docs/WHY-NOT-MVT.md) for the workflow, integration and licensing rationale, and the resulting coverage tradeoff.
 
 🟢 Strength · 🟡 Gap · 🔴 Experimental / unvalidated · 🔵 Tradeoff.
