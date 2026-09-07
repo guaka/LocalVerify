@@ -8,111 +8,6 @@ Local Verify is an experimental, local-only app for iOS 17+ and Android 11+ for 
 
 The app bundles a snapshot of Amnesty/MVT indicators for offline analysis. It is not full MVT parity and does not provide comprehensive current-spyware coverage. Results are leads for investigation, not proof of compromise.
 
-## Build
-
-Byte-for-byte reproducible builds are not yet verified. See [current status and next steps](docs/REPRODUCIBLEBUILDS.md).
-
-### iOS
-
-Requires Xcode 16+ and Python 3 for project generation and offline source checks. Python is not included in the app.
-
-```sh
-python3 tools/generate_project.py
-swift test
-xcodebuild -project LocalVerify.xcodeproj \
-  -scheme LocalVerify \
-  -sdk iphonesimulator \
-  -configuration Debug \
-  CODE_SIGNING_ALLOWED=NO build
-```
-
-Open `LocalVerify.xcodeproj` in Xcode to run the app. Physical-device builds need a development team, a registered device, and the App Group `group.org.mobiletriage.private` configured for both targets.
-
-For a Files-only build without App Groups or the share extension, run `python3 tools/generate_project.py --local-only` and open `LocalVerifyLocal.xcodeproj`. Use Save to Files → On My iPhone, then import in Local Verify. Physical-device installation still requires signing.
-
-Distribute the source with private builds, including LICENSE and third-party notices.
-
-### Android
-
-The native Android app lives in `Android/` and uses Kotlin and Jetpack Compose. It supports Android 11+ (API 30+) and has Scan, Cases, Indicators, and About tabs.
-
-Requires JDK 17+, Android SDK Platform 34, and an SDK location configured through `ANDROID_HOME` or `Android/local.properties`. Android Studio can provide the JDK and SDK. The repository includes the Gradle wrapper; build dependencies may require internet access even though the app processes evidence offline.
-
-From the repository root:
-
-```sh
-cd Android
-./gradlew :app:assembleDebug
-```
-
-The debug APK is written to `Android/app/build/outputs/apk/debug/localverify-debug.apk` (relative to the repository root).
-
-To install on a connected Android 11+ device with USB debugging enabled, run from `Android/`:
-
-```sh
-./gradlew :app:installDebug
-```
-
-Android supports archive selection through the system document picker and incoming share/open intents. Cases and incomplete results are stored locally; report ZIP exports include JSON and HTML, with the original archive included only when selected.
-
-Physical-device and manufacturer-specific collection guidance still need validation, and full upstream Android-MVT parity is not established. See the [Android implementation notes](docs/ANDROID.md) for setup and release-signing details, and the [Android validation matrix](docs/ANDROID-VALIDATION-MATRIX.md) for recorded test coverage and remaining gaps.
-
-## Tests and coverage
-
-### iOS and shared Swift core
-
-Run the Swift package tests with:
-
-```sh
-swift test
-```
-
-Generate a SwiftPM coverage summary and LCOV file with:
-
-```sh
-./tools/coverage.sh
-```
-
-Reports are written to:
-
-- `build/coverage-reports/swiftpm-coverage.txt`
-- `build/coverage-reports/swiftpm-coverage.lcov`
-
-The SwiftPM report excludes generated SwiftPM test harness files and test-source files so the totals focus on production coverage.
-
-Generate coverage for the iOS UI tests on a simulator with:
-
-```sh
-./tools/coverage.sh ios \
-  --destination 'platform=iOS Simulator,name=iPhone 17 Pro'
-```
-
-The script generates the Files-only UI-test project. The iOS report is written to `build/coverage-reports/ios-ui-coverage.txt`; each run keeps a separate raw result bundle under `build/coverage-reports/ios-run.*/results.xcresult`.
-
-UI regression checks are generated with:
-
-```sh
-python3 tools/generate_project.py --local-only --ui-tests
-```
-
-Run the generated checks with the `LocalVerifyChecks` scheme in Xcode.
-
-### Android
-
-From `Android/`, run JVM tests and lint with:
-
-```sh
-./gradlew :app:testDebugUnitTest :app:lintDebug
-```
-
-Run workflow tests only on a disposable emulator without existing Local Verify cases. Select its serial from `adb devices`:
-
-```sh
-ANDROID_SERIAL=emulator-5554 ./gradlew :app:connectedDebugAndroidTest
-```
-
-These tests use synthetic evidence. Do not use a phone containing real cases as the instrumentation test target. JVM reports are written under `Android/app/build/reports/tests/`; emulator reports are under `Android/app/build/reports/androidTests/`.
-
 ## Using the app
 
 ### iOS
@@ -134,16 +29,6 @@ Imported iOS cases keep their indicator set so resumed analysis is reproducible.
 
 On both platforms, case storage is excluded from automatic backup, and deleting a case deletes its stored exports. Evidence upload is never automatic. Copies saved or shared outside the app remain separate.
 
-### Synthetic smoke test
-
-For a safe end-to-end smoke test, generate the synthetic fixtures:
-
-```sh
-python3 tools/generate_fixture.py
-```
-
-The generated archive contains no real device data. Transfer `Fixtures/synthetic-indicators.stix2` and `Fixtures/synthetic-sysdiagnose.tar.gz` to Files on iOS or local storage accessible to Android's document picker. Import the synthetic indicators first, then the archive, and expect one raw-text lead and one structured lead. Use “Use bundled indicators” afterward to restore the bundled definitions.
-
 ## Supported data and limits
 
 Both apps scan supported UTF-8 `.ips`, `.json`, `.crash`, `.log`, and `.txt` archive entries. iOS accepts gzip-compressed tar archives; Android also accepts ZIP containers. Binary unified logs, binary plists, links, and other unsupported entries are not analyzed as text.
@@ -156,19 +41,19 @@ See the detailed [verification](docs/VERIFICATION.md), [report contract](docs/RE
 
 ## Comparison with related tools
 
-Reviewed 2026-09-07 against linked documentation and the current implementation. This compares scope, not measured detection effectiveness. iOS below includes iPadOS where supported; commercial features vary by offering.
+Reviewed 2026-09-07 against linked documentation and the current implementation. This compares scope, not measured detection effectiveness. Commercial features vary by offering.
 
-Licence: 🟢 Open source · 🟡 Source available, use-restricted · 🔴 Proprietary. **🔴 Experimental** separately flags Local Verify's maturity; colors are not detection scores.
+Licence: 🟢 Open source · 🟡 Restricted or unverified (see label) · 🔴 Proprietary. **🔴 Experimental** flags maturity; colors are not detection scores.
 
-Execution: 🟢 On phone · 🟡 Separate computer · 🔴 Shared with service. Library rows describe the listed tool workflow, not every possible embedding.
+Execution: 🟢 On phone · 🟡 Separate computer or phone workflow unverified · 🔴 Shared with service. Library rows describe the listed tool workflow, not every possible embedding.
 
 | Tool | Platform | Focus | Evidence / execution | Licence |
 | --- | --- | --- | --- | --- |
-| **Local Verify — 🔴 Experimental** | iOS, Android | Limited STIX matching; coverage unvalidated in real-world compromise cases | 🟢 Diagnostics; offline on phone| 🟢 [AGPL-3.0+](LICENSE) |
+| [IsMyPhonePwned](https://ismyphonepwned.com/) — Beta | iOS, Android | Diagnostic parsing and detection rules | 🟡 Sysdiagnose/bugreport; browser-local; phone/offline unverified | 🟢 [Apache-2.0 parsers](https://github.com/IsMyPhonePwned/sysdiagnose-extractor-library) / 🟡 [Web licence unverified](https://github.com/IsMyPhonePwned/ismyphonepwned.github.io) |
+| [Hypatia (maintained fork)](https://github.com/MaintainTeam/Hypatia) | Android | Malware file/app signatures; no diagnostic-log analysis | 🟢 On-phone scan; offline after signature download | 🟢 [Free/open source](https://github.com/MaintainTeam/Hypatia/blob/stable/LICENSE) |
+| [Panda Sysdiagnose](https://apps.apple.com/fi/app/sysdiagnose/id6795409832) | iOS | Device health; no documented spyware checks | 🟢 Sysdiagnose; on-device parsing/storage claimed | 🟡 No free-software licence found; free download |
 | [Amnesty MVT](https://github.com/mvt-project/mvt) | iOS, Android | Investigator-led spyware analysis | 🟡 Backups, filesystems, Android acquisitions; desktop CLI| 🟡 [MVT 1.1](https://github.com/mvt-project/license/blob/main/MVT%20License%201.1.txt) |
 | [EC SAF](https://github.com/EC-DIGIT-CSIRC/sysdiagnose) | iOS | Deep parsing, YARA, timelines | 🟡 Sysdiagnose; desktop| 🟢 [EUPL-1.2](https://github.com/EC-DIGIT-CSIRC/sysdiagnose/blob/main/LICENSE.txt) |
-| [iMazing Analyzer](https://imazing.com/spyware-analyzer) | iOS | Guided spyware checks; free feature | 🟡 Backups; Mac/Windows; network features| 🔴 [App](https://imazing.com/uploads/iMazing-EULA.pdf) + 🟡 [MVT analyzer](https://github.com/DigiDNA/iMazing-Malware-Analyzer) |
-| [iVerify Enterprise](https://welcome.iverify.io/hubfs/iVerify-Mobile-Threat-Detection-Scanning-Capabilities-for-Enterprise.pdf) | iOS, Android | Commercial scans and monitoring | 🔴 Diagnostics shared with service; telemetry varies| 🔴 Proprietary |
 | [iLEAPP](https://github.com/abrignoni/iLEAPP) | iOS | Broad artifact parsing and reports | 🟡 Backups/extractions; desktop GUI/CLI| 🟢 [MIT](https://github.com/abrignoni/iLEAPP/blob/main/LICENSE) |
 | [ALEAPP](https://github.com/abrignoni/ALEAPP) | Android | Broad artifact parsing and reports | 🟡 Extractions; desktop GUI/CLI| 🟢 [MIT](https://github.com/abrignoni/ALEAPP/blob/main/LICENSE) |
 | [AndroidQF](https://github.com/mvt-project/androidqf) | Android | Collection for MVT; no detection | 🟡 USB to computer; optional encrypted archive| 🟡 [MVT 1.1](https://github.com/mvt-project/license/blob/main/MVT%20License%201.1.txt) |
@@ -177,8 +62,13 @@ Execution: 🟢 On phone · 🟡 Separate computer · 🔴 Shared with service. 
 | [Triangle Check](https://github.com/KasperskyLab/triangle_check) | iOS | Operation Triangulation traces | 🟡 iTunes backups; desktop CLI| 🟢 [MIT](https://github.com/KasperskyLab/triangle_check/blob/main/License.txt) |
 | [SCNR](https://github.com/shindan-io/scnr) | Format-based | Structured-file parsing, not detection | 🟡 Plists, SQLite, archives; local Rust tools| 🟢 [Apache-2.0](https://github.com/shindan-io/scnr/blob/main/LICENSE) |
 | [BugBay](https://github.com/hidden-investigations/bugbay) | Web apps | Vulnerable training labs; no mobile forensics | 🟡 Linux/Docker; downloads and optional LAN exposure| 🟢 [Apache-2.0](https://github.com/hidden-investigations/bugbay/blob/main/LICENSE) |
+| **Local Verify — 🔴 Experimental** | iOS, Android | Limited STIX matching; coverage unvalidated in real-world compromise cases | 🟢 Diagnostics; offline on phone| 🟢 [AGPL-3.0+](LICENSE) |
+| [iMazing Analyzer](https://imazing.com/spyware-analyzer) | iOS | Guided spyware checks; free feature | 🟡 Backups; Mac/Windows; network features| 🔴 [App](https://imazing.com/uploads/iMazing-EULA.pdf) + 🟡 [MVT analyzer](https://github.com/DigiDNA/iMazing-Malware-Analyzer) |
+| [iVerify Enterprise](https://welcome.iverify.io/hubfs/iVerify-Mobile-Threat-Detection-Scanning-Capabilities-for-Enterprise.pdf) | iOS, Android | Commercial scans and monitoring | 🔴 Diagnostics shared with service; telemetry varies| 🔴 Proprietary |
 
 MVT uses [AndroidQF for Android acquisition](https://github.com/mvt-project/mvt/blob/main/docs/android/methodology.md); its [sysdiagnose checks require forensic plugins](https://docs.mvt.re/en/latest/ios/sysdiagnose/). Desktop analysis can be local: [iMazing](https://imazing.com/guides/detect-pegasus-and-other-spyware-on-iphone) processes backups on the computer but uses the internet for indicators and shortened-link expansion. Local Verify's distinction is keeping analysis on the phone without automatic uploads.
+
+Closest workflow match: IsMyPhonePwned imports both diagnostic formats and applies [detection rules](https://ismyphonepwned.com/bugreport-status.html), but browser-local processing does not establish reliable offline operation on the affected phone. Its web app fetches assets/rules; a complete airplane-mode workflow and the whole web-app licence remain unverified. Panda documents local diagnostic storage, not spyware detection; its offline operation was not tested. These are documentation/source comparisons, not hands-on validation.
 
 MVT's consent restriction makes it source-available rather than open source under the [Open Source Definition](https://opensource.org/osd). App code, dependencies and indicator datasets have separate terms; free of charge does not mean open source.
 
@@ -196,6 +86,12 @@ MVT's consent restriction makes it source-available rather than open source unde
 | 🔵 Trust | A compromised OS can interfere with evidence and analysis; no-match results cannot prove safety |
 
 These are current tradeoffs, not committed features. See [privacy](docs/PRIVACY.md), [hardening](docs/HARDEN.md), [verification](docs/VERIFICATION.md) and [Android validation](docs/ANDROID-VALIDATION-MATRIX.md). Development uses synthetic evidence under [AGENTS.md](AGENTS.md).
+
+## Build and test
+
+See the [build instructions](docs/BUILD.md) for iOS and Android setup, compilation, signing, and installation.
+
+See the [testing guide](docs/TESTING.md) for Swift, iOS UI, and Android tests and coverage reports.
 
 ## License
 
