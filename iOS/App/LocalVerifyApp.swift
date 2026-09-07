@@ -248,7 +248,7 @@ struct WorkProgressPanel: View {
                     .font(.body.monospacedDigit()).foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
             }
-            Text("Keep Local Verify open. Processing stays on this iPhone.").font(.footnote).foregroundStyle(.secondary)
+            Text("Keep LocalVerify open. Processing stays on this iPhone.").font(.footnote).foregroundStyle(.secondary)
             if model.canCancel {
                 Button("Cancel", role: .cancel) { model.cancel() }
                     .buttonStyle(.bordered).controlSize(.large)
@@ -280,7 +280,7 @@ struct ScanView: View {
                     NavigationLink { CollectionGuide() } label: {
                         Label("How to collect and export sysdiagnose", systemImage: "list.number")
                     }.accessibilityIdentifier("collectionGuide")
-                    Text("Generate the archive in iOS, save it to On My iPhone → Local Verify → Imports, then import it below. No computer is needed.").font(.footnote)
+                    Text("Generate the archive in iOS, save it to On My iPhone → LocalVerify → Imports, then import it below. No computer is needed.").font(.footnote)
                 }
                 Section("2 · Import") {
                     Text("Archives may contain sensitive personal data. Cases remain on this phone until deleted and are excluded from automatic backup. Exported copies are controlled by their recipient.").font(.footnote)
@@ -379,7 +379,7 @@ struct AboutView: View {
             List {
                 Section {
                     Label {
-                        Text("Local Verify")
+                        Text("LocalVerify")
                     } icon: {
                         Image(systemName: "checkmark").foregroundStyle(Color("AccentColor"))
                     }
@@ -389,8 +389,8 @@ struct AboutView: View {
                 }
                 Section("Privacy") {
                     Label("Analysis stays on this device", systemImage: "iphone")
-                    Text("No uploads or telemetry. Case files are protected and excluded from automatic backup. Data leaves Local Verify only when you choose to share an export.")
-                    Text("Copies you saved in Files or previously shared remain separate from a Local Verify case.").font(.footnote).foregroundStyle(.secondary)
+                    Text("No uploads or telemetry. Case files are protected and excluded from automatic backup. Data leaves LocalVerify only when you choose to share an export.")
+                    Text("Copies you saved in Files or previously shared remain separate from a LocalVerify case.").font(.footnote).foregroundStyle(.secondary)
                 }
                 Section("Experimental coverage") {
                     Text("Findings are leads for review, not proof of compromise. No matches does not establish that a device is uncompromised.")
@@ -402,7 +402,7 @@ struct AboutView: View {
                     Text(verbatim: "License: https://creativecommons.org/licenses/by/2.0/").textSelection(.enabled)
                     Text("MVT contributors — expanded Predator, Coruna and DarkSword collections, compiled from published research. MIT license; source references and license text accompany the bundled files.")
                     Text(verbatim: "Source and license: https://github.com/mvt-project/mvt-indicators").textSelection(.enabled)
-                    Text("Definitions are bundled or imported from a local file. References are shown as text; Local Verify does not open websites.").font(.footnote)
+                    Text("Definitions are bundled or imported from a local file. References are shown as text; LocalVerify does not open websites.").font(.footnote)
                 }
                 Section("Legal") {
                     NavigationLink {

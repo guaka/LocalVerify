@@ -46,7 +46,7 @@ The repository includes checksum-pinned Gradle 8.11.1. No standalone Gradle inst
 ## Next work
 
 1. Adapt `SyntheticWorkflowTest` to the current UI: handle the native import confirmation, direct Start without consent, opt-in original export, skipped-versus-analyzed counts, scrolling, and the current export storage behavior. Check activity recreation does not replay the incoming import and replace results. Keep assertions meaningful rather than deleting failing checks.
-2. Run instrumentation on a disposable API 36 emulator without existing Local Verify cases. `Trustroots_Pixel_8_API_36` worked with `-read-only -no-snapshot-save -no-window -no-audio`; stop only the emulator you start when finished. The API 35 AVD has a missing system image.
+2. Run instrumentation on a disposable API 36 emulator without existing LocalVerify cases. `Trustroots_Pixel_8_API_36` worked with `-read-only -no-snapshot-save -no-window -no-audio`; stop only the emulator you start when finished. The API 35 AVD has a missing system image.
 3. Validate picker navigation, implicit share/open resolution, unsupported and malformed inputs, Stop then fresh restart, screen lock/background, rotation, and export failures with synthetic fixtures. Fix issues and add focused regression coverage.
 4. Update `docs/ANDROID.md` and `docs/ANDROID-VALIDATION-MATRIX.md` with exact results, clearly separating JVM, emulator, physical-device, and historical evidence.
 5. Physical-device/OEM instructions, upstream parity, and release signing remain later work. Do not publish or share artifacts externally without authorization.

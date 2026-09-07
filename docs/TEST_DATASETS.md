@@ -1,6 +1,6 @@
 # Public mobile-forensics test data
 
-This note lists reputable, lawful sources for exercising Local Verify's import and matching workflow. Use only data you are authorized to possess. Treat all device extractions as sensitive evidence: they can contain identifiers, location history, account details, messages, and network metadata.
+This note lists reputable, lawful sources for exercising LocalVerify's import and matching workflow. Use only data you are authorized to possess. Treat all device extractions as sensitive evidence: they can contain identifiers, location history, account details, messages, and network metadata.
 
 ## Important limitation: confirmed compromise samples
 
@@ -53,7 +53,7 @@ The APK portion of malware datasets is hazardous. Prefer their captured logs or 
 
 [SocialTIC Forensics](https://forensics.socialtic.org/) is a documentation resource for consensual digital forensics in support of civil society and human rights. It includes informed-consent guidance, forensic-lab risk considerations, Android bug-report and AndroidQF acquisition tutorials, and reference dictionaries for AndroidQF and MVT outputs. The site offers Spanish, English, and Portuguese navigation. Reviewed 2026-09-07.
 
-Use it to inform collection guidance, artifact interpretation, and realistic synthetic test scenarios. It is a methodology reference, not a confirmed-compromise dataset or a Local Verify integration. Its acquisition tutorials do not override this repository's [evidence-handling policy](../AGENTS.md): actual phone evidence stays on the phone during debugging unless an exception is explicitly authorized.
+Use it to inform collection guidance, artifact interpretation, and realistic synthetic test scenarios. It is a methodology reference, not a confirmed-compromise dataset or a LocalVerify integration. Its acquisition tutorials do not override this repository's [evidence-handling policy](../AGENTS.md): actual phone evidence stays on the phone during debugging unless an exception is explicitly authorized.
 
 ## Suggested test matrix
 

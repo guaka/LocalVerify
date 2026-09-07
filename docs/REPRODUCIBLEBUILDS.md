@@ -2,7 +2,7 @@
 
 ## Current status — 2026-09-06
 
-Local Verify does **not yet have verified byte-for-byte reproducible builds**. The repository has documented build commands, pinned inputs and successful build/test records. It has not demonstrated identical release artifacts from two independent clean builds.
+LocalVerify does **not yet have verified byte-for-byte reproducible builds**. The repository has documented build commands, pinned inputs and successful build/test records. It has not demonstrated identical release artifacts from two independent clean builds.
 
 A reproducibility claim must identify the source revision, build environment, instructions and exact artifacts another builder can reproduce. Passing tests or rebuilding successfully does not establish identical bytes. See the [Reproducible Builds definition](https://reproducible-builds.org/docs/definition/).
 

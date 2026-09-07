@@ -1,4 +1,4 @@
-# Local Verify Android
+# LocalVerify Android
 
 > Shared-engine migration requirements and named legacy differences are maintained in [the engine contract guide](../docs/ENGINE-EXPERIMENT.md). Existing implementation and historical validation notes below remain platform-specific.
 
@@ -57,7 +57,7 @@ Debug APK: `app/build/outputs/apk/debug/localverify-debug.apk`.
 For direct build and test execution, use `./gradlew :app:assembleDebug :app:testDebugUnitTest`.
 The bootstrap helper is retained for wrapper recovery; its default version is 8.11.1.
 
-Synthetic UI tests: on a disposable emulator without existing Local Verify cases, set
+Synthetic UI tests: on a disposable emulator without existing LocalVerify cases, set
 `ANDROID_SERIAL` to its serial and run `./gradlew :app:connectedDebugAndroidTest`.
 Two tests target explicit ZIP share/open intake, direct analysis, activity recreation,
 and export with/without the original. They generate and inspect fixtures inside the

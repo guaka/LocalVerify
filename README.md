@@ -1,10 +1,10 @@
-# Local Verify
+# LocalVerify
 
 > Shared-engine migration requirements and named legacy differences are maintained in [the engine contract guide](docs/ENGINE-EXPERIMENT.md). Existing implementation and historical validation notes below remain platform-specific.
 
-<img src="iOS/App/Assets.xcassets/AppIcon.appiconset/app-icon.png" alt="Local Verify app icon" width="128">
+<img src="iOS/App/Assets.xcassets/AppIcon.appiconset/app-icon.png" alt="LocalVerify app icon" width="128">
 
-Local Verify is an experimental, local-only app for iOS 17+ and Android 11+ for importing and reviewing diagnostic archives: iOS sysdiagnose files and Android bug reports. It has no backend, telemetry, or evidence upload.
+LocalVerify is an experimental, local-only app for iOS 17+ and Android 11+ for importing and reviewing diagnostic archives: iOS sysdiagnose files and Android bug reports. It has no backend, telemetry, or evidence upload.
 
 The app bundles a snapshot of Amnesty/MVT indicators for offline analysis. It is not full MVT parity and does not provide comprehensive current-spyware coverage. Results are leads for investigation, not proof of compromise.
 
@@ -13,7 +13,7 @@ The app bundles a snapshot of Amnesty/MVT indicators for offline analysis. It is
 ### iOS
 
 1. Follow the in-app guide to collect a sysdiagnose using Apple-supported settings.
-2. Save it to `On My iPhone > Local Verify > Imports`.
+2. Save it to `On My iPhone > LocalVerify > Imports`.
 3. Use bundled indicators, or import a local STIX indicator file before importing the archive.
 4. Review findings and export a report ZIP manually.
 
@@ -22,7 +22,7 @@ Imported iOS cases keep their indicator set so resumed analysis is reproducible.
 ### Android
 
 1. Follow the in-app collection guidance to create a bug report. The available settings and collection steps vary by manufacturer.
-2. Save the archive locally, then select it in Scan or explicitly share/open it with Local Verify. ZIP and gzip-compressed tar archives are supported.
+2. Save the archive locally, then select it in Scan or explicitly share/open it with LocalVerify. ZIP and gzip-compressed tar archives are supported.
 3. Use the bundled indicators, or import a local STIX2 bundle in Indicators before creating the case.
 4. Start analysis and keep the app in the foreground with the screen unlocked. Switching apps or locking the screen stops analysis; incomplete results remain available, but starting again scans from the beginning.
 5. Open Cases to review findings, errors, and skipped files. Prepare a report ZIP and share it explicitly; including the original archive is optional.
@@ -49,7 +49,7 @@ Execution: 🟢 On phone · 🟡 Separate computer or phone workflow unverified 
 
 | Tool | Platform | Focus | Evidence / execution | Licence |
 | --- | --- | --- | --- | --- |
-| **Local Verify — 🔴 Experimental** | iOS, Android | Limited STIX matching; coverage unvalidated in real-world compromise cases | 🟢 Diagnostics; offline on phone| 🟢 [AGPL-3.0+](LICENSE) |
+| **LocalVerify — 🔴 Experimental** | iOS, Android | Limited STIX matching; coverage unvalidated in real-world compromise cases | 🟢 Diagnostics; offline on phone| 🟢 [AGPL-3.0+](LICENSE) |
 | [IsMyPhonePwned](https://ismyphonepwned.com/) — Beta | iOS, Android | Diagnostic parsing and detection rules | 🟡 Sysdiagnose/bugreport; browser-local; phone/offline unverified | 🟢 [Apache-2.0 parsers](https://github.com/IsMyPhonePwned/sysdiagnose-extractor-library) / 🟡 [Web licence unverified](https://github.com/IsMyPhonePwned/ismyphonepwned.github.io) |
 | [Hypatia (maintained fork)](https://github.com/MaintainTeam/Hypatia) | Android | Malware file/app signatures; no diagnostic-log analysis | 🟢 On-phone scan; offline after signature download | 🟢 [Free/open source](https://github.com/MaintainTeam/Hypatia/blob/stable/LICENSE) |
 | [Panda Sysdiagnose](https://apps.apple.com/fi/app/sysdiagnose/id6795409832) | iOS | Device health; no documented spyware checks | 🟢 Sysdiagnose; on-device parsing/storage claimed | 🟡 No free-software licence found; free download |
@@ -66,15 +66,15 @@ Execution: 🟢 On phone · 🟡 Separate computer or phone workflow unverified 
 | [iMazing Analyzer](https://imazing.com/spyware-analyzer) | iOS | Guided spyware checks; free feature | 🟡 Backups; Mac/Windows; network features| 🔴 [App](https://imazing.com/uploads/iMazing-EULA.pdf) + 🟡 [MVT analyzer](https://github.com/DigiDNA/iMazing-Malware-Analyzer) |
 | [iVerify Enterprise](https://welcome.iverify.io/hubfs/iVerify-Mobile-Threat-Detection-Scanning-Capabilities-for-Enterprise.pdf) | iOS, Android | Commercial scans and monitoring | 🔴 Diagnostics shared with service; telemetry varies| 🔴 Proprietary |
 
-MVT uses [AndroidQF for Android acquisition](https://github.com/mvt-project/mvt/blob/main/docs/android/methodology.md); its [sysdiagnose checks require forensic plugins](https://docs.mvt.re/en/latest/ios/sysdiagnose/). Desktop analysis can be local: [iMazing](https://imazing.com/guides/detect-pegasus-and-other-spyware-on-iphone) processes backups on the computer but uses the internet for indicators and shortened-link expansion. Local Verify's distinction is keeping analysis on the phone without automatic uploads.
+MVT uses [AndroidQF for Android acquisition](https://github.com/mvt-project/mvt/blob/main/docs/android/methodology.md); its [sysdiagnose checks require forensic plugins](https://docs.mvt.re/en/latest/ios/sysdiagnose/). Desktop analysis can be local: [iMazing](https://imazing.com/guides/detect-pegasus-and-other-spyware-on-iphone) processes backups on the computer but uses the internet for indicators and shortened-link expansion. LocalVerify's distinction is keeping analysis on the phone without automatic uploads.
 
 Closest workflow match: IsMyPhonePwned imports both diagnostic formats and applies [detection rules](https://ismyphonepwned.com/bugreport-status.html), but browser-local processing does not establish reliable offline operation on the affected phone. Its web app fetches assets/rules; a complete airplane-mode workflow and the whole web-app licence remain unverified. Panda documents local diagnostic storage, not spyware detection; its offline operation was not tested. These are documentation/source comparisons, not hands-on validation.
 
 MVT's consent restriction makes it source-available rather than open source under the [Open Source Definition](https://opensource.org/osd). App code, dependencies and indicator datasets have separate terms; free of charge does not mean open source.
 
-### Local Verify tradeoffs
+### LocalVerify tradeoffs
 
-See [why Local Verify does not embed MVT](docs/WHY-NOT-MVT.md) for the workflow, integration and licensing rationale, and the resulting coverage tradeoff.
+See [why LocalVerify does not embed MVT](docs/WHY-NOT-MVT.md) for the workflow, integration and licensing rationale, and the resulting coverage tradeoff.
 
 🟢 Strength · 🟡 Gap · 🔴 Experimental / unvalidated · 🔵 Tradeoff.
 
@@ -97,7 +97,7 @@ See the [testing guide](docs/TESTING.md) for Swift, iOS UI, and Android tests an
 
 ## License
 
-Local Verify's project-owned source is licensed under the GNU Affero General Public
+LocalVerify's project-owned source is licensed under the GNU Affero General Public
 License, version 3 or (at your option) any later version (`AGPL-3.0-or-later`).
 See [LICENSE](LICENSE) for the full terms. The software is provided without warranty.
 

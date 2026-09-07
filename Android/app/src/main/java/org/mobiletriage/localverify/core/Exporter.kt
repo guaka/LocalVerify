@@ -61,7 +61,7 @@ ${finding.excerpt}
 <meta charset='utf-8'>
 <meta http-equiv='Content-Security-Policy' content="default-src 'none'; style-src 'unsafe-inline'">
 <meta name='viewport' content='width=device-width'>
-<title>Local Verify report</title>
+<title>LocalVerify report</title>
 <style>body{font:16px system-ui;max-width:900px;margin:40px auto;padding:20px}pre{white-space:pre-wrap;overflow-wrap:anywhere}article{border-top:1px solid #aaa}</style>
 <h1>${esc(report.status)}</h1>
 <p>Experimental triage. Absence of matches does not establish that a device is uncompromised.</p>

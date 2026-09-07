@@ -58,7 +58,7 @@ From `Android/`, run JVM tests and lint with:
 ./gradlew :app:testDebugUnitTest :app:lintDebug
 ```
 
-Run workflow tests only on a disposable emulator without existing Local Verify cases. Select its serial from `adb devices`:
+Run workflow tests only on a disposable emulator without existing LocalVerify cases. Select its serial from `adb devices`:
 
 ```sh
 ANDROID_SERIAL=emulator-5554 ./gradlew :app:connectedDebugAndroidTest

@@ -195,7 +195,7 @@ export PATH="$JAVA_HOME/bin:$ANDROID_HOME/platform-tools:$PATH"
 
 The original successful run invoked cached Gradle by absolute path. The repository now includes `gradlew`, `gradlew.bat`, and the wrapper JAR/properties under `Android/gradle/wrapper/`. Gradle 8.11.1 is pinned with its published distribution SHA-256 (`f397b287023acdba1e9f6fc5ea72d22dd63669d59ed4a289a29b1a76eee151c6`). The full plan runner and helper-script preflight passed with the wrapper and no standalone Gradle on PATH. ADB 1.0.41 (37.0.0-14910828) was used for API 36 emulator testing. No physical device was connected. The API 35 AVD could not start because its system image was missing; the API 36 AVD ran read-only and was stopped after testing.
 
-Run instrumentation only on a disposable emulator without existing Local Verify cases. The tests refuse to run against existing cases and generate their fixtures locally:
+Run instrumentation only on a disposable emulator without existing LocalVerify cases. The tests refuse to run against existing cases and generate their fixtures locally:
 
 ```sh
 export ANDROID_SERIAL=emulator-5554

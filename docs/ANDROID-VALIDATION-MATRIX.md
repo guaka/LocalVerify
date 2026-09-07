@@ -4,7 +4,7 @@
 
 This entry supersedes earlier emulator results below. No consent gate was added; Start runs directly, Stop remains, and restarting scans the retained archive from the beginning. Original inclusion remains opt-in. Other contributors' restart and no-consent changes are preserved.
 
-- Environment: Android Studio JDK 21.0.4, checksum-pinned Gradle 8.11.1, SDK Platform/Build Tools 34; disposable `Trustroots_Pixel_8_API_36`, Android 16/API 36 arm64, serial `emulator-5584`, launched read-only/headless without snapshot saving. The emulator had no Local Verify installation before testing.
+- Environment: Android Studio JDK 21.0.4, checksum-pinned Gradle 8.11.1, SDK Platform/Build Tools 34; disposable `Trustroots_Pixel_8_API_36`, Android 16/API 36 arm64, serial `emulator-5584`, launched read-only/headless without snapshot saving. The emulator had no LocalVerify installation before testing.
 - Final command: `:app:connectedDebugAndroidTest :app:testDebugUnitTest :app:assembleDebug :app:lintDebug --console=plain`, using the handoff Java/SDK environment and `ANDROID_SERIAL=emulator-5584`.
 - Result: **BUILD SUCCESSFUL**. All **9 instrumentation tests** passed, zero failures/errors/skips. All **17 JVM tests** across six suites passed on the current core; the final unchanged JVM task was up-to-date. Lint: **0 errors, 18 nonblocking warnings** (including dependency/resource recommendations).
 - APK: `Android/app/build/outputs/apk/debug/localverify-debug.apk`, debug-signed. SHA-256: `1e1c5c1b85ed2b2bb73583793face53e445fbd2519bc9f6d878738efccc9801f`.

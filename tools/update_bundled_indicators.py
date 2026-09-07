@@ -63,7 +63,7 @@ def main():
         payloads[name + ".stix2"] = data
         manifest["files"].append(dict(name=name, path=path, bytes=len(data), sha256=digest, url=url, license="MIT" if is_mvt else "CC BY 2.0"))
         print(name, len(data), digest)
-    attribution = f"Pegasus and Cytrox bundles by Amnesty International. {SOURCE}\nCC BY 2.0: https://creativecommons.org/licenses/by/2.0/\nUnmodified source bundles; Local Verify uses a supported subset. No endorsement implied.\nAmnesty revision: {revision}\nRetrieved: {manifest['downloadedAt']}\n"
+    attribution = f"Pegasus and Cytrox bundles by Amnesty International. {SOURCE}\nCC BY 2.0: https://creativecommons.org/licenses/by/2.0/\nUnmodified source bundles; LocalVerify uses a supported subset. No endorsement implied.\nAmnesty revision: {revision}\nRetrieved: {manifest['downloadedAt']}\n"
     attribution += "\n".join(f"{f['path']}\nLicense: {f['license']}\nSHA-256 {f['sha256']}\n{f['url']}" for f in manifest["files"])
     attribution += f"\n\nPredator, Coruna and DarkSword collections: MVT contributors, compiled from published research.\nhttps://github.com/mvt-project/mvt-indicators\nMIT license (see MVT-INDICATORS-LICENSE.txt). Unmodified bundles; supported subset used.\nRevision: {mvt_revision}\n"
     payloads["MVT-INDICATORS-LICENSE.txt"] = fetch(f"https://raw.githubusercontent.com/mvt-project/mvt-indicators/{mvt_revision}/LICENSE")

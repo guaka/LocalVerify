@@ -1,4 +1,4 @@
-# Building Local Verify
+# Building LocalVerify
 
 Run commands from the repository root unless otherwise noted.
 
@@ -20,7 +20,7 @@ xcodebuild -project LocalVerify.xcodeproj \
 
 Open `LocalVerify.xcodeproj` in Xcode to run the app. Physical-device builds need a development team, a registered device, and the App Group `group.org.mobiletriage.private` configured for both targets.
 
-For a Files-only build without App Groups or the share extension, run `python3 tools/generate_project.py --local-only` and open `LocalVerifyLocal.xcodeproj`. Use Save to Files → On My iPhone, then import in Local Verify. Physical-device installation still requires signing.
+For a Files-only build without App Groups or the share extension, run `python3 tools/generate_project.py --local-only` and open `LocalVerifyLocal.xcodeproj`. Use Save to Files → On My iPhone, then import in LocalVerify. Physical-device installation still requires signing.
 
 Distribute the source with private builds, including LICENSE and third-party notices.
 

@@ -28,7 +28,7 @@ struct PrivacyShield: UIViewRepresentable {
             view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             view.accessibilityViewIsModal = true
             view.isAccessibilityElement = true
-            view.accessibilityLabel = "Local Verify — contents hidden"
+            view.accessibilityLabel = "LocalVerify — contents hidden"
             window.addSubview(view)
             shield = view
         }
