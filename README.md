@@ -43,6 +43,8 @@ See the detailed [verification](docs/VERIFICATION.md), [report contract](docs/RE
 
 Reviewed 2026-09-07 against linked documentation and the current implementation. This compares scope, not measured detection effectiveness. Commercial features vary by offering.
 
+Bugbane added from its website and repository documentation on 2026-09-08.
+
 Licence: 🟢 Open source · 🟡 Restricted or unverified (see label) · 🔴 Proprietary. **🔴 Experimental** flags maturity; colors are not detection scores.
 
 Execution: 🟢 On phone · 🟡 Separate computer or phone workflow unverified · 🔴 Shared with service. Library rows describe the listed tool workflow, not every possible embedding.
@@ -50,6 +52,7 @@ Execution: 🟢 On phone · 🟡 Separate computer or phone workflow unverified 
 | Tool | Platform | Focus | Evidence / execution | Licence |
 | --- | --- | --- | --- | --- |
 | **LocalVerify — 🔴 Experimental** | iOS, Android | Limited STIX matching; coverage unvalidated in real-world compromise cases | 🟢 Diagnostics; offline on phone| 🟢 [AGPL-3.0+](LICENSE) |
+| [Bugbane](https://bugbane.org/) — Beta | Android | On-device acquisition and spyware/stalkerware IOC checks | 🟢 Same-phone Wireless Debugging; encrypted exports; offline workflow unverified | 🟢 [GPL-3.0-only](https://github.com/osservatorionessuno/bugbane#license) |
 | [IsMyPhonePwned](https://ismyphonepwned.com/) — Beta | iOS, Android | Diagnostic parsing and detection rules | 🟡 Sysdiagnose/bugreport; browser-local; phone/offline unverified | 🟢 [Apache-2.0 parsers](https://github.com/IsMyPhonePwned/sysdiagnose-extractor-library) / 🟡 [Web licence unverified](https://github.com/IsMyPhonePwned/ismyphonepwned.github.io) |
 | [Hypatia (maintained fork)](https://github.com/MaintainTeam/Hypatia) | Android | Malware file/app signatures; no diagnostic-log analysis | 🟢 On-phone scan; offline after signature download | 🟢 [Free/open source](https://github.com/MaintainTeam/Hypatia/blob/stable/LICENSE) |
 | [Panda Sysdiagnose](https://apps.apple.com/fi/app/sysdiagnose/id6795409832) | iOS | Device health; no documented spyware checks | 🟢 Sysdiagnose; on-device parsing/storage claimed | 🟡 No free-software licence found; free download |
@@ -68,7 +71,7 @@ Execution: 🟢 On phone · 🟡 Separate computer or phone workflow unverified 
 
 MVT uses [AndroidQF for Android acquisition](https://github.com/mvt-project/mvt/blob/main/docs/android/methodology.md); its [sysdiagnose checks require forensic plugins](https://docs.mvt.re/en/latest/ios/sysdiagnose/). Desktop analysis can be local: [iMazing](https://imazing.com/guides/detect-pegasus-and-other-spyware-on-iphone) processes backups on the computer but uses the internet for indicators and shortened-link expansion. LocalVerify's distinction is keeping analysis on the phone without automatic uploads.
 
-Closest workflow match: IsMyPhonePwned imports both diagnostic formats and applies [detection rules](https://ismyphonepwned.com/bugreport-status.html), but browser-local processing does not establish reliable offline operation on the affected phone. Its web app fetches assets/rules; a complete airplane-mode workflow and the whole web-app licence remain unverified. Panda documents local diagnostic storage, not spyware detection; its offline operation was not tested. These are documentation/source comparisons, not hands-on validation.
+Close workflow matches: [Bugbane](https://github.com/osservatorionessuno/bugbane) performs Android acquisition and IOC analysis on the same phone through Wireless Debugging, with encrypted evidence exports. Its developers warn that use can be detected by spyware/stalkerware, advise against use where physical harm is a risk, and do not yet recommend it for non-technical users. Encryption is not redaction. IsMyPhonePwned imports both diagnostic formats and applies [detection rules](https://ismyphonepwned.com/bugreport-status.html), but browser-local processing does not establish reliable offline operation on the affected phone. Its web app fetches assets/rules; a complete airplane-mode workflow and the whole web-app licence remain unverified. Panda documents local diagnostic storage, not spyware detection; its offline operation was not tested. These are documentation/source comparisons, not hands-on validation.
 
 MVT's consent restriction makes it source-available rather than open source under the [Open Source Definition](https://opensource.org/osd). App code, dependencies and indicator datasets have separate terms; free of charge does not mean open source.
 
