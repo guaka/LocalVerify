@@ -21,7 +21,7 @@ android {
 
     defaultConfig {
         applicationId = "org.mobiletriage.localverify"
-        minSdk = 30
+        minSdk = 29
         targetSdk = 34
         versionCode = 1
         versionName = "0.1.0-" + LocalDateTime.now(ZoneOffset.UTC)

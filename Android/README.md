@@ -7,7 +7,7 @@ This is a Kotlin/Jetpack Compose native Android implementation started from
 
 ## Current scope implemented
 
-- Android 11+ native import path for bug-report exports (document picker + shared `ACTION_SEND/ACTION_VIEW` intake).
+- Android 10+ (API 29+) native import path for bug-report exports (document picker + shared `ACTION_SEND/ACTION_VIEW` intake).
 - Manual import of STIX indicator bundles (plus bundled demo indicators).
 - Streaming parser for `.zip` archives and `.tar.gz` streams with limits and skip reasons:
   - max expanded size 8 GiB
@@ -35,7 +35,7 @@ This is a Kotlin/Jetpack Compose native Android implementation started from
    - `./scripts/run-android-plan.sh`
 7. Or run parity checks directly:
    - `./scripts/gradle-android.sh :app:testDebugUnitTest`
-8. Install on an Android 11+ device for manual workflow testing.
+8. Install on an Android 10+ device for manual workflow testing.
 9. Capture each validation cycle in `docs/ANDROID-VALIDATION-MATRIX.md`.
 10. Export signed release artifacts via Gradle assemble tasks for handoff.
    - Set `LOCALVERIFY_RELEASE_KEYSTORE`, `LOCALVERIFY_RELEASE_STORE_PASSWORD`, `LOCALVERIFY_RELEASE_KEY_ALIAS`, and `LOCALVERIFY_RELEASE_KEY_PASSWORD` for signed release output.
@@ -59,6 +59,7 @@ The bootstrap helper is retained for wrapper recovery; its default version is 8.
 
 Synthetic UI tests: on a disposable emulator without existing LocalVerify cases, set
 `ANDROID_SERIAL` to its serial and run `./gradlew :app:connectedDebugAndroidTest`.
+Run this suite on API 29 and a newer Android emulator to verify minimum-platform compatibility.
 Two tests target explicit ZIP share/open intake, direct analysis, activity recreation,
 and export with/without the original. They generate and inspect fixtures inside the
 emulator. Do not run them on a phone containing actual evidence.

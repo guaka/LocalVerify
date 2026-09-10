@@ -42,6 +42,10 @@ class SyntheticWorkflowTest {
         check(Build.MODEL.contains("sdk") || Build.FINGERPRINT.contains("generic")) { "Disposable emulator required" }
         store = CaseStore(context)
         check(store.listCaseIds().isEmpty()) { "Use a fresh emulator without existing cases" }
+        val appInfo = context.packageManager.getApplicationInfo(context.packageName, 0)
+        assertEquals("APK must support Android 10", 29, appInfo.minSdkVersion)
+        assertEquals("Case data must be excluded from backup", 0,
+            appInfo.flags and android.content.pm.ApplicationInfo.FLAG_ALLOW_BACKUP)
         device.wakeUp(); device.pressMenu()
     }
     @After fun cleanup() {

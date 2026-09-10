@@ -8,7 +8,7 @@ Current validation: 9 API 36 emulator tests and 17 JVM tests pass; debug assembl
 
 ## Scope
 
-Implement a native Android 11+ (API 30+) triage flow that mirrors the same local-only workflow as iOS:
+Implement a native Android 10+ (API 29+) triage flow that mirrors the same local-only workflow as iOS:
 
 - Import bug-report evidence (`.tar.gz` stream from Android device exports).
 - Parse indicators from STIX2 bundles.
@@ -230,7 +230,7 @@ Steps:
 3. Or run explicit build/test steps:
    - `./scripts/gradle-android.sh :app:assembleDebug`
    - `./scripts/gradle-android.sh :app:testDebugUnitTest`
-4. Install/debug on a connected Android 11+ device:
+4. Install/debug on a connected Android 10+ device:
    - `./scripts/gradle-android.sh :app:installDebug`
 5. Open app and validate:
    - Import a generated synthetic bug-report zip and indicators bundle.

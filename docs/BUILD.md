@@ -26,7 +26,7 @@ Distribute the source with private builds, including LICENSE and third-party not
 
 ## Android
 
-The native Android app lives in `Android/` and uses Kotlin and Jetpack Compose. It supports Android 11+ (API 30+) and has Scan, Cases, Indicators, and About tabs.
+The native Android app lives in `Android/` and uses Kotlin and Jetpack Compose. It supports Android 10+ (API 29+) and has Scan, Cases, Indicators, and About tabs.
 
 Requires JDK 17+, Android SDK Platform 34, and an SDK location configured through `ANDROID_HOME` or `Android/local.properties`. Android Studio can provide the JDK and SDK. The repository includes the Gradle wrapper; build dependencies may require internet access even though the app processes evidence offline.
 
@@ -39,7 +39,7 @@ cd Android
 
 The debug APK is written to `Android/app/build/outputs/apk/debug/localverify-debug.apk` (relative to the repository root).
 
-To install on a connected Android 11+ device with USB debugging enabled, run from `Android/`:
+To install on a connected Android 10+ device with USB debugging enabled, run from `Android/`:
 
 ```sh
 ./gradlew :app:installDebug
